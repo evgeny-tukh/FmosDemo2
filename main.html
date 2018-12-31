@@ -1,0 +1,34 @@
+ <!DOCTYPE html>
+ <!--
+ To change this license header, choose License Headers in Project Properties.
+ To change this template file, choose Tools | Templates
+ and open the template in the editor.
+ -->
+ <html>
+     <head>
+         <title>Tug Fleet Monitoring System</title>
+         <meta charset="UTF-8">
+         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+         <link rel="stylesheet" href="main.css"/>
+         <link rel="stylesheet" href="cary/styles.css"/>
+         <link rel="stylesheet" href="cary/classic.css"/>
+         <link rel="stylesheet" href="cary/ui/generic/calendar.css"/>
+         <script src="https://maps.googleapis.com/maps/api/js?libraries=geometry&key=AIzaSyAdUFwRzzsTOL9FGaQ-WCmSMwxp64fqjEA"></script>
+         <script src="lz-string/lz-string.js"></script>
+         <script src="main.js"></script>
+         <script src="custom.js"></script>
+         <script src="util/ser_util.js"></script>
+         <script src="util/watchdog.js"></script>
+         <script src="cary/cary.min.1.js"></script>
+         <script src="ui/side_pane.js "></script>
+         <script src="ui/fleet_pane.js "></script>
+         <script src="ui/track_settings.js "></script>
+         <script src="strings.js"></script>
+         <script src="ais.js"></script>
+         <script src="fleet/fleet.js"></script>
+         <script src="fleet/track.js"></script>
+     </head>
+     <body onload="init ();">
+         <div id="map" class="map">Map pane</div>
+     </body>
+ </html>

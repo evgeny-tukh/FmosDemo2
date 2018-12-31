@@ -13,11 +13,13 @@ function DataPane (callbacks, options)
     this.vessel    = null;
     this.timeBegin = null;
     this.timeEnd   = null;
+    this.lastData  = [];
     
     Cary.ui.Window.apply (this,
                           [{ position: { top: 315, left: 10, width: 400, height: Cary.tools.int2pix (window.innerHeight - 370), absolute: true },
                            title: stringTable.sensorData, parent: parent, paneMode: true }]);
 }
+
 DataPane.prototype = Object.create (Cary.ui.Window.prototype);
 
 DataPane.prototype.onInitialize = function ()
@@ -40,6 +42,19 @@ DataPane.prototype.onInitialize = function ()
 
     function showGraphWnd ()
     {
+        var labels = [], 
+            values = [];
+
+        instance.lastData.forEach (function (item)
+                          {
+                             labels.push (Cary.tools.formatDateTime (item.time));
+                             values.push (item.actualVal);
+                          });
+
+        labels.reverse ();
+        values.reverse ();
+
+        new GraphWnd (null, labels, values, { xLabel: stringTable.time, yLabel: stringTable.value, title: sensorCtl.getItemText (sensorCtl.getCurSel ()) });
     }
     
     function onSetTimeFrame (from, to)
@@ -54,12 +69,16 @@ DataPane.prototype.onInitialize = function ()
         
         dataList.removeAllItems ();
         
+        instance.lastData = [];
+        
         graphButton.show (false);
         
         loadSerializable ('get_sens_data.php?b=' + beginTime + '&e=' + endTime + '&s=' + sensor.id + '&i=' + timeInterval, onSensorDataLoaded);
         
         function onSensorDataLoaded (data)
         {
+            instance.lastData = data.data;
+            
             data.data.forEach (function (record)
                                {
                                    dataList.addItem ([Cary.tools.formatDateTime (record.time), record.actualVal.toFixed (1)]);

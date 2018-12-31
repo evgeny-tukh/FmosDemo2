@@ -139,3 +139,4 @@ sensor,Сенсор
 timeSettings,Настройки времени
 dataInterval,Интервал (сек)
 graph,График
+time,Время

@@ -30,6 +30,7 @@
                     <link rel="stylesheet" href="cary/styles.css"/>
                     <link rel="stylesheet" href="cary/classic.css"/>
                     <link rel="stylesheet" href="cary/ui/generic/calendar.css"/>
+                    <script src="chart.js/Chart.bundle.js"></script>
                     <script src="https://maps.googleapis.com/maps/api/js?libraries=geometry&key=AIzaSyAdUFwRzzsTOL9FGaQ-WCmSMwxp64fqjEA"></script>
                     <script src="lz-string/lz-string.js"></script>
                     <script src="main.js"></script>
@@ -83,11 +84,12 @@
                     <script src="cary/ui/dlg/usr_pln_props.js"></script>
                     <script src="cary/ui/dlg/usr_plg_props.js"></script>
                     <script src="cary/ui/dlg/msg_box.js"></script>
-                    <script src="cary/ui/dlg/browser_wnd.js "></script>
-                    <script src="ui/side_pane.js "></script>
-                    <script src="ui/fleet_pane.js "></script>
-                    <script src="ui/data_pane.js "></script>
-                    <script src="ui/track_settings.js "></script>
+                    <script src="cary/ui/dlg/browser_wnd.js"></script>
+                    <script src="ui/side_pane.js"></script>
+                    <script src="ui/fleet_pane.js"></script>
+                    <script src="ui/data_pane.js"></script>
+                    <script src="ui/track_settings.js"></script>
+                    <script src="ui/graph_wnd.js"></script>
                     <script src="strings.js"></script>
                     <script src="ais.js"></script>
                     <script src="fleet/fleet.js"></script>

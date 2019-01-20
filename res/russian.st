@@ -140,3 +140,6 @@ timeSettings,Настройки времени
 dataInterval,Интервал (сек)
 graph,График
 time,Время
+vesselInfo,Информация по судну
+operations,Операции
+fuel,Топливо

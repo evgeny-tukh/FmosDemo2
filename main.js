@@ -476,7 +476,8 @@ function drawFleet (show)
     
     function getVesselInfo ()
     {
-        var message = this.vessel.name + '\n\n' +
+        new VesselInfo (this.vessel);
+        /*var message = this.vessel.name + '\n\n' +
                       'Последний отчет: ' + formatReportTime (this.vessel.lastReport) + '\n' +
                       'Последний отчет о позиции: ' + formatReportTime (this.vessel.lastPosReport) + '\n' +
                       'Последний отчет о топливе: ' + formatReportTime (this.vessel.lastFuelReport) + '\n' +
@@ -487,7 +488,7 @@ function drawFleet (show)
         function formatReportTime (time)
         {
             return time > 0 ? Cary.tools.formatDateTime (time) : 'никогда';
-        }
+        }*/
     }
 }
 

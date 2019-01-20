@@ -79,6 +79,7 @@
                     <script src="cary/ui/generic/calendar.js"></script>
                     <script src="cary/ui/generic/datehourbox2.js"></script>
                     <script src="cary/ui/generic/flashing_img.js"></script>
+                    <script src="cary/ui/generic/tabctrl.js"></script>
                     <script src="cary/ui/dlg/coord_edit.js"></script>
                     <script src="cary/ui/dlg/pos_edit.js"></script>
                     <script src="cary/ui/dlg/usr_pln_props.js"></script>
@@ -90,6 +91,7 @@
                     <script src="ui/data_pane.js"></script>
                     <script src="ui/track_settings.js"></script>
                     <script src="ui/graph_wnd.js"></script>
+                    <script src="ui/vessel_info.js"></script>
                     <script src="strings.js"></script>
                     <script src="ais.js"></script>
                     <script src="fleet/fleet.js"></script>

@@ -820,3 +820,35 @@
     padding:		2px;
     width:		80px;
 }
+
+.tabItem_Selected, .tabItem_Unselected
+{
+    font-size:          17px;
+    padding:            10px;
+    margin:             0px;
+    margin-left:        5px;
+    margin-top:         5px;
+    border-radius:      8px 8px 0px 0px;
+    height:             fit-content;
+    width:              fit-content;
+    display:            inline;
+    float:              left;
+}
+
+.tabItem_Selected
+{
+    border-style:       solid;
+    border-width:       1px;
+    border-color:       black;
+    border-bottom-style: none;
+    border-bottom-width: 0px;
+    color:              black;
+    background-color:   white;
+}
+
+.tabItem_Unselected
+{
+    border-style:       none;
+    color:              white;
+    background-color:   blue;
+}

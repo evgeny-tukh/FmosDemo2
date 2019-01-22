@@ -23,13 +23,13 @@ VesselInfo.prototype.onInitialize = function ()
                        { text: stringTable.tanks, onSelect: showTanksPane }, { text: stringTable.info, onSelect: showInfoPane }]
     var tabs        = new Cary.ui.TabControl ({ parent: this.client, visible: true, items: tabItems }, { position: 'absolute', top: 0, left: 0, width: '100%', height: 'fit-content' });
     var curDateTime = new Cary.ui.ControlBlock ({ parent: this.client, visible: true, text: Cary.tools.formatDateHours (beginTime) },
-                                                { width: '810px', height: 35, padding: 0, position: 'absolute', top: 530, left: 10, height: 30, 'text-align': 'center' });
+                                                { width: '810px', height: 35, padding: 0, position: 'absolute', top: 250, left: 10, height: 30, 'text-align': 'center' });
     var slider      = new Cary.ui.Slider ({ parent: this.client, visible: true, value: 0, min: beginTime, max: endTime, step: 3600000, onChange: onChangeDate }, 
-                                          { width: '810px', height: 35, padding: 0, position: 'absolute', top: 550, left: 10, height: 30 });
+                                          { width: '810px', height: 35, padding: 0, position: 'absolute', top: 260, left: 10, height: 20 });
 
     this.operPane  = null;
-    this.tanksPane = new TanksPane (this.vessel, null, { parent: this.client, visible: false });
-    this.fuelPane  = null;
+    this.tanksPane = new TanksPane (this.vessel, slider, { parent: this.client, visible: false });
+    this.fuelPane  = new FuelPane (this.vessel, slider, { parent: this.client, visible: false });
     this.infoPane  = null;
     
     /*var buttonStyle = { width: 70, height: 30, float: 'right' };

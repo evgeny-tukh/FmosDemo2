@@ -20,9 +20,9 @@ TankEditWnd.prototype.onInitialize = function ()
     var depthBlock  = new Cary.ui.ControlBlock ({ parent: this.client, visible: true, text: stringTable.depth }, ctlStyles );
     var volBlock    = new Cary.ui.ControlBlock ({ parent: this.client, visible: true, text: stringTable.volume }, ctlStyles );
     var nameCtl     = new Cary.ui.EditBox ({ parent: nameBlock.htmlObject, visible: true, text: this.tankDesc.name }, { float: 'right', width: 200, 'margin-right': 20 });
-    var depthCtl    = new Cary.ui.EditBox ({ parent: depthBlock.htmlObject, visible: true, text: this.tankDesc.depth, numeric: true, float: true, min: 0.5, step: 0.5 }, 
+    var depthCtl    = new Cary.ui.EditBox ({ parent: depthBlock.htmlObject, visible: true, value: this.tankDesc.depth, numeric: true, float: true, min: 0.5, step: 0.5 }, 
                                            { float: 'right', width: 60, 'margin-right': 20 });
-    var volumeCtl   = new Cary.ui.EditBox ({ parent: volBlock.htmlObject, visible: true, text: this.tankDesc.volume, numeric: true, float: true, min: 0.5, step: 0.5 }, 
+    var volumeCtl   = new Cary.ui.EditBox ({ parent: volBlock.htmlObject, visible: true, value: this.tankDesc.volume, numeric: true, float: true, min: 0.5, step: 0.5 }, 
                                            { float: 'right', width: 60, 'margin-right': 20 });
     var buttonBlock = new Cary.ui.ControlBlock ({ parent: this.client, visible: true, anchor: Cary.ui.anchor.BOTTOM });
     

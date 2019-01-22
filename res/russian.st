@@ -141,9 +141,28 @@ dataInterval,Интервал (сек)
 graph,График
 time,Время
 vesselInfo,Информация по судну
+operation,Операция
 operations,Операции
 fuel,Топливо
+tank,Танк
 tanks,Танки
 depth,Глубина
 volume,Объем
 tankParams,Параметры танка
+confirmation,Подтверждение
+tankDeleteConfirm,Вы подтверждаете удаление танка
+curSounding,Гл.поверхн.
+curAmount,Тек.кол-во
+fuelAmount,Кол-во топл.
+result,Результат
+fuelOperation,Топливная операция
+operType,Тип операции
+beginAmount,Ост.на начало
+endAmount,Ост.на конец
+bunkering,Загрузка
+consumption,Расход
+unloading,Выгрузка
+loss,Утрата
+amount,Количество
+subject,Субъект
+notAppl,N/A

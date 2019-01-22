@@ -1,32 +1,20 @@
-function TanksPane (vessel, callbacks, options)
+function TanksPane (vessel, slider, options)
 {
-    var parent = 'parent' in options ? options.parent : document.getElementsByTagName ('body') [0];
-    
-    this.vessel = vessel;
-    
-    if (Cary.tools.isNothing (callbacks))
-        callbacks = {};
-    
-    if (Cary.tools.isNothing (options))
-        options = {};
-    
-    this.options   = Cary.tools.isNothing (options) ? {} : options;
-    this.callbacks = Cary.tools.isNothing (callbacks) ? {} : callbacks;
-    
-    Cary.ui.Window.apply (this, [{ position: { left: 0, top: 45, width: '100%', height: 225, absolute: true }, paneMode: true, parent: parent, noCloseIcon: true }]);
+    VesselInfoPane.apply (this, arguments);
 }
 
-TanksPane.prototype = Object.create (Cary.ui.Window.prototype);
+TanksPane.prototype = Object.create (VesselInfoPane.prototype);
 
 TanksPane.prototype.onInitialize = function ()
 {
     var instance = this;
-    var columns  = [{ title: stringTable.name, width: 100 }, { title: stringTable.volume, width: 70 }, { title: stringTable.depth, width: 70 }];
-    var tankList = new Cary.ui.ListView ({ parent: this.wnd, columns: columns, visible: true }, { position: 'absolute', top: 2, left: 2, width: 280, height: 230, 'background-color': 'yellow' });
+    var columns  = [{ title: stringTable.name, width: 100 }, { title: stringTable.volume, width: 70 }, { title: stringTable.depth, width: 70 },
+                    { title: stringTable.curSounding, width: 100 }, { title: stringTable.curAmount, width: 90 }];
+    var tankList = new Cary.ui.ListView ({ parent: this.wnd, columns: columns, visible: true }, { position: 'absolute', top: 2, left: 2, width: 480, height: 190 });
    
-    new Cary.ui.Button ({ visible: true, parent: this.wnd, text: stringTable.add, onClick: onAddTank }, { position: 'absolute', top: 5, left: 290, width: 80, height: 30 });
-    new Cary.ui.Button ({ visible: true, parent: this.wnd, text: stringTable.edit, onClick: onEditTank }, { position: 'absolute', top: 45, left: 290, width: 80, height: 30 });
-    new Cary.ui.Button ({ visible: true, parent: this.wnd, text: stringTable.delete, onClick: onDeleteTank }, { position: 'absolute', top: 85, left: 290, width: 80, height: 30 });
+    new Cary.ui.Button ({ visible: true, parent: this.wnd, text: stringTable.add, onClick: onAddTank }, { position: 'absolute', top: 5, left: 490, width: 80, height: 30 });
+    new Cary.ui.Button ({ visible: true, parent: this.wnd, text: stringTable.edit, onClick: onEditTank }, { position: 'absolute', top: 45, left: 490, width: 80, height: 30 });
+    new Cary.ui.Button ({ visible: true, parent: this.wnd, text: stringTable.delete, onClick: onDeleteTank }, { position: 'absolute', top: 85, left: 490, width: 80, height: 30 });
     
     Cary.tools.sendRequest ({ method: Cary.tools.methods.get, resType: Cary.tools.resTypes.json, url: 'requests/tank_get_list.php?v=' + instance.vessel.id, onLoad: onTankListLoaded });
 
@@ -62,19 +50,50 @@ TanksPane.prototype.onInitialize = function ()
     
     function onEditTank ()
     {
+        var selection = tankList.getSelectedItem ();
+        
+        if (selection >= 0)
+        {
+            new TankEditWnd (null, tankList.getItemData (selection), { onOk: onOk });
+
+            function onOk (tankDesc)
+            {
+                saveTank (tankDesc, onSaved);
+
+                function onSaved (tankID)
+                {
+                    if (parseInt (tankID) === tankDesc.id)
+                    {
+                        tankList.setItemText (selection, 0, tankDesc.name);
+                        tankList.setItemText (selection, 1, tankDesc.volume);
+                        tankList.setItemText (selection, 2, tankDesc.depth);
+                        tankList.setItemData (selection, tankDesc);
+                    }
+                }
+            }
+        }
     }
     
     function onDeleteTank ()
     {
+        var selection = tankList.getSelectedItem ();
+        
+        if (selection >= 0)
+        {
+            var tankDesc = tankList.getItemData (selection);
+            
+            new Cary.ui.MessageBox ({ width: 400, yesNo: true, title: stringTable.confirmation, text: stringTable.tankDeleteConfirm + '"' + tankDesc.name + '"?' }, { onOk: onOk });
+            
+            function onOk ()
+            {
+                Cary.tools.sendRequest ({ method: Cary.tools.methods.get, resType: Cary.tools.resTypes.plain, url: 'requests/tank_delete.php?id=' + tankDesc.id, onLoad: onDeleted });
+            }
+            
+            function onDeleted (affectedRecs)
+            {
+                if (parseInt (affectedRecs) > 0)
+                    tankList.removeItem (selection);
+            }
+        }
     }
-};
-
-TanksPane.prototype.queryClose = function ()
-{
-    return false;
-};
-
-TanksPane.prototype.setVessel = function (vessel)
-{
-    this.vessel = vessel;
 };

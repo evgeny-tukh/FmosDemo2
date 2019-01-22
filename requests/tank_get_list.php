@@ -12,8 +12,8 @@
         $cb = function ($row) use (&$result)
               {
                   array_push ($result,
-                              ['id' => intval ($row ['id']), 'name' => $row ['name'], 'depth' => doubleval ($row ['depth']),
-                               'volume' => doubleval ($row ['volume'])]);
+                              ['id' => intval ($row ['id']), 'vessel' => intval ($row ['vessel']), 'name' => $row ['name'], 
+                               'depth' => doubleval ($row ['depth']), 'volume' => doubleval ($row ['volume'])]);
               };
 
         $database->enumResult ("select * from tanks where vessel=$vessel order by id", $cb);

@@ -91,9 +91,12 @@
                     <script src="ui/data_pane.js"></script>
                     <script src="ui/track_settings.js"></script>
                     <script src="ui/graph_wnd.js"></script>
-                    <script src="ui/tank_edit.js"></script>
+                    <script src="ui/vi_dialogs/tank_edit.js"></script>
+                    <script src="ui/vi_dialogs/fuel_oper_edit.js"></script>
                     <script src="ui/vessel_info.js"></script>
+                    <script src="ui/vi_panes/vi_pane.js"></script>
                     <script src="ui/vi_panes/tanks_pane.js"></script>
+                    <script src="ui/vi_panes/fuel_pane.js"></script>
                     <script src="strings.js"></script>
                     <script src="ais.js"></script>
                     <script src="fleet/fleet.js"></script>

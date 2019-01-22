@@ -70,6 +70,11 @@
         return $time ? gmstrftime ('%Y-%m-%d %I%p', intval ($time)) : "";
     }
 
+    function dateToStr ($time)
+    {
+        return $time ? gmstrftime ('%Y-%m-%d', intval ($time)) : "";
+    }
+
     function getKeyValue ($array, $key, $default = NULL)
     {
         return array_key_exists ($key, $array) ? $array [$key] : $default;

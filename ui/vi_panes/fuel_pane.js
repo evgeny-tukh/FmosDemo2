@@ -9,7 +9,7 @@ FuelPane.prototype.onInitialize = function ()
 {
     var instance = this;
     var columns  = [{ title: stringTable.time, width: 140 }, { title: stringTable.operation, width: 130 }, { title: stringTable.subject, width: 200 },
-                    { title: stringTable.fuelAmount, width: 110 }, { title: stringTable.result, width: 100 }];
+                    { title: stringTable.fuelAmount, width: 100 }, { title: stringTable.result, width: 100 }];
     var tankCtl  = new Cary.ui.ListBox ({ parent: this.wnd, comboBox: true, visible: true, onItemClick: onTankSelected }, { position: 'absolute', top: 5, left: 5, width: 400, height: 25 });
     var operList = new Cary.ui.ListView ({ parent: this.wnd, columns: columns, visible: true }, { position: 'absolute', top: 35, left: 2, width: 700, height: 160 });
    

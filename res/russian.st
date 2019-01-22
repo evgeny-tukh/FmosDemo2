@@ -143,3 +143,7 @@ time,Время
 vesselInfo,Информация по судну
 operations,Операции
 fuel,Топливо
+tanks,Танки
+depth,Глубина
+volume,Объем
+tankParams,Параметры танка

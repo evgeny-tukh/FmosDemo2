@@ -26,18 +26,21 @@
         $subject  = getKeyValue ($data, 'subject');
         $affOper  = getKeyValue ($data, 'affectedOper');
 
-        if ($id && $time && $tank && $type && $amount)
+        if (!$subject)
+            $subject = 'null';
+
+        if ($time && $tank && $type && $amount)
         {
-            $time = mysqlTime ($time);
+            $time = mysqlTime ($time, FALSE);
 
             if ($id > 0)
-                $query = "update fuel_operations set time='$time',tank=$tank,type=$type,amount=$amount,subject=$subject,affected_oper=$affOper where id=$id";
+                $query = "update fuel_operations set `time`='$time',tank=$tank,`type`=$type,amount=$amount,`subject`=$subject,affected_oper=$affOper where id=$id";
             else
-                $query = "insert into fuel_operations(time,tank,type,amount,subject) values('$time',$tank,$type,$amount,$subject)";
-
+                $query = "insert into fuel_operations(`time`,tank,`type`,amount,`subject`) values('$time',$tank,$type,$amount,$subject)";
+echo "1: $query\n";
             $database->execute ($query);
 
-            if ($id === 0)
+            if (!$id)
                 $id = $database->insertID ();
 
             if ($type === transferOut || $type === transferIn)
@@ -47,22 +50,25 @@
                 else
                     $affType = transferOut;
 
-                if ($affOper === 0)
+                if (!$affOper)
                 {
-                    $query = "insert into fuel_operations(time,tank,type,amount,subject,affected_oper) values('$time',$subject,$affType,$amount,$tank,$id)";
-
+                    $query = "insert into fuel_operations(`time`,tank,`type`,amount,`subject`,affected_oper) values('$time',$subject,$affType,$amount,$tank,$id)";
+echo "2: $query\n";
                     $database->execute ($query);
 
                     $affOper = $database->insertID ();
                 }
                 else
                 {
-                    $query = "update fuel_operations set time='$time',tank=$subject,type=$affType,amount=$amount,subject=$tank,affected_oper=$id where id=$affOper";
-
+                    $query = "update fuel_operations set `time`='$time',tank=$subject,`type`=$affType,amount=$amount,`subject`=$tank,affected_oper=$id where id=$affOper";
+echo "3: $query\n";
                     $database->execute ($query);
                 }
 
-                $database->execute ("update fuel_operations set affected_oper=$affOper where id=$id");
+                $query = "update fuel_operations set `time`='$time',`type`=$type,tank=$tank,amount=$amount,affected_oper=$affOper where id=$id";
+
+                $database->execute ($query);
+echo "$query\n";
             }
 
             $result = $id > 0 ? $id : 0;

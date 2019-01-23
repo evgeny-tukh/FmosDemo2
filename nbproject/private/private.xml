@@ -11,6 +11,20 @@
         </file>
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/C:/xampp/htdocs/FmosDemo/cary/tools.js</file>
+            <file>file:/C:/xampp/htdocs/FmosDemo/requests/fo_add.php</file>
+            <file>file:/C:/xampp/htdocs/FmosDemo/cary/ui/generic/editbox.js</file>
+            <file>file:/C:/xampp/htdocs/FmosDemo/util/ser_util.js</file>
+            <file>file:/C:/xampp/htdocs/FmosDemo/ui/vi_panes/oper_pane.js</file>
+            <file>file:/C:/xampp/htdocs/FmosDemo/ui/vessel_info.js</file>
+            <file>file:/C:/xampp/htdocs/FmosDemo/ui/vi_panes/fuel_pane.js</file>
+            <file>file:/C:/xampp/htdocs/FmosDemo/ui/graph_wnd.js</file>
+            <file>file:/C:/xampp/htdocs/FmosDemo/ui/vi_panes/tanks_pane.js</file>
+            <file>file:/C:/xampp/htdocs/FmosDemo/cary/ui/generic/listbox.js</file>
+            <file>file:/C:/xampp/htdocs/FmosDemo/main.php</file>
+            <file>file:/C:/xampp/htdocs/FmosDemo/ui/data_pane.js</file>
+            <file>file:/C:/xampp/htdocs/FmosDemo/ui/vi_dialogs/fuel_oper_edit.js</file>
+        </group>
     </open-files>
 </project-private>

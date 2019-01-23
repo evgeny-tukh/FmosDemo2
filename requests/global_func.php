@@ -12,6 +12,11 @@
         return $timestamp ? $timestamp : NULL;
     }
 
+    function localTimeStringToUTCString ($dateTimeStr)
+    {
+        return gmstrftime ('%Y-%m-%d %H:%M:%S', (new DateTime ($dateTimeStr))->getTimestamp ());
+    }
+
     function getTimestamp2 ($dateTime)
     {
         return strtotime ($dateTime.".0Z");

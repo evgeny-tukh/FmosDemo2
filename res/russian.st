@@ -151,6 +151,7 @@ volume,Объем
 tankParams,Параметры танка
 confirmation,Подтверждение
 tankDeleteConfirm,Вы подтверждаете удаление танка
+fuelOperDeleteConfirm,Вы подтверждаете удаление топливной операции?
 curSounding,Гл.поверхн.
 curAmount,Тек.кол-во
 fuelAmount,Кол-во топл.

@@ -14,6 +14,21 @@ FuelOperEditWnd.prototype = Object.create (Cary.ui.Window.prototype);
 FuelOperEditWnd.types     = { beginAmount: 0, bunkering: 1, consumption: 2, unloading: 3, transferOut: 4, transferIn: 5, loss: 6, endAmount: 7 };
 FuelOperEditWnd.typeNames = [];
 
+FuelOperEditWnd.getTypeName = function (type)
+{
+    var result = '';
+    
+    for (var key in FuelOperEditWnd.types)
+    {
+        if (FuelOperEditWnd.types [key] === type)
+        {
+            result = stringTable [key]; break;
+        }
+    }
+    
+    return result;
+};
+
 FuelOperEditWnd.prototype.onInitialize = function ()
 {
     var instance    = this;

@@ -9,13 +9,14 @@ FuelPane.prototype.onInitialize = function ()
 {
     var instance = this;
     var columns  = [{ title: stringTable.time, width: 140 }, { title: stringTable.operation, width: 130 }, { title: stringTable.subject, width: 200 },
-                    { title: stringTable.fuelAmount, width: 100 }, { title: stringTable.result, width: 100 }];
+                    { title: stringTable.fuelAmount, width: 110 }, { title: stringTable.result, width: 90 }];
     var tankCtl  = new Cary.ui.ListBox ({ parent: this.wnd, comboBox: true, visible: true, onItemClick: onTankSelected }, { position: 'absolute', top: 5, left: 5, width: 400, height: 25 });
     var operList = new Cary.ui.ListView ({ parent: this.wnd, columns: columns, visible: true }, { position: 'absolute', top: 35, left: 2, width: 700, height: 160 });
    
     new Cary.ui.Button ({ visible: true, parent: this.wnd, text: stringTable.add, onClick: onAddOper }, { position: 'absolute', top: 5, left: 710, width: 80, height: 30 });
     new Cary.ui.Button ({ visible: true, parent: this.wnd, text: stringTable.edit, onClick: onEditOper }, { position: 'absolute', top: 45, left: 710, width: 80, height: 30 });
     new Cary.ui.Button ({ visible: true, parent: this.wnd, text: stringTable.delete, onClick: onDeleteOper }, { position: 'absolute', top: 85, left: 710, width: 80, height: 30 });
+    new Cary.ui.Button ({ visible: true, parent: this.wnd, text: stringTable.report, onClick: onShowReport }, { position: 'absolute', top: 125, left: 710, width: 80, height: 30 });
 
     reloadTankList ();
 
@@ -55,7 +56,18 @@ FuelPane.prototype.onInitialize = function ()
         
         operations.forEach (function (operDesc)
                             {
-                                amount += operDesc.amount;
+                                switch (operDesc.type)
+                                {
+                                    case FuelOperEditWnd.types.bunkering:
+                                    case FuelOperEditWnd.types.transferIn:
+                                        amount += operDesc.amount; break;
+                                        
+                                    case FuelOperEditWnd.types.consumption:
+                                    case FuelOperEditWnd.types.loss:
+                                    case FuelOperEditWnd.types.transferOut:
+                                    case FuelOperEditWnd.types.unloading:    
+                                        amount -= operDesc.amount; break;
+                                }
                                 
                                 operList.addItem ([Cary.tools.formatDateTime (operDesc.time), FuelOperEditWnd.typeNames [operDesc.type], operDesc.subjName, operDesc.amount.toFixed (1), amount.toFixed (1)]);
                             });
@@ -72,18 +84,16 @@ FuelPane.prototype.onInitialize = function ()
 
     function onAddOper ()
     {
-        new OperEditWnd (null, { name: 'New tank', id: 0, vessel: instance.vessel.id }, { onOk: onOk });
+        var tankDesc = tankCtl.getSelectedData ();
         
-        function onOk (tankDesc)
+        new FuelOperEditWnd (null,
+                             { vessel: instance.vessel, id: 0, tank: tankDesc.id, time: instance.slider.getValue (), type: FuelOperEditWnd.types.bunkering, amount: 1.0,
+                               subject: null, affectedOper: null },
+                             { onOk: onOk });
+        
+        function onOk (operDesc)
         {
-            saveOper (tankDesc, onSaved);
-            
-            function onSaved (tankID)
-            {
-                tankDesc.id = parseInt (tankID);
-                
-                tankList.addItem ([tankDesc.name, tankDesc.volume, tankDesc.depth], tankDesc);
-            }
+            saveOper (operDesc, onTankSelected);
         }
     }
     
@@ -116,6 +126,11 @@ FuelPane.prototype.onInitialize = function ()
                 }
             }
         }
+    }
+    
+    function onShowReport ()
+    {
+        
     }
     
     function onDeleteOper ()

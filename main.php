@@ -97,6 +97,7 @@
                     <script src="ui/vi_panes/vi_pane.js"></script>
                     <script src="ui/vi_panes/tanks_pane.js"></script>
                     <script src="ui/vi_panes/fuel_pane.js"></script>
+                    <script src="ui/vi_panes/oper_pane.js"></script>
                     <script src="strings.js"></script>
                     <script src="ais.js"></script>
                     <script src="fleet/fleet.js"></script>

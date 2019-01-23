@@ -162,7 +162,16 @@ endAmount,Ост.на конец
 bunkering,Загрузка
 consumption,Расход
 unloading,Выгрузка
+transferOut,Перекачка из
+transferIn,Перекачка в
 loss,Утрата
 amount,Количество
 subject,Субъект
-notAppl,N/A
+notAppl,Неприменимо
+tankSameAsSubj,Выбранный танк совпадает с субъектом операции
+tankNotSelected,Танк не выбран
+amountNotPresent,Объем операции не указан
+typeNotSelected,Тип не выбран
+report,Отчет
+begin,Начало
+end,Конец

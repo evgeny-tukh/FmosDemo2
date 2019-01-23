@@ -27,11 +27,12 @@ VesselInfo.prototype.onInitialize = function ()
     var slider      = new Cary.ui.Slider ({ parent: this.client, visible: true, value: 0, min: beginTime, max: endTime, step: 3600000, onChange: onChangeDate }, 
                                           { width: '810px', height: 35, padding: 0, position: 'absolute', top: 260, left: 10, height: 20 });
 
-    this.operPane  = null;
+    this.operPane  = new OperationsPane (this.vessel, slider, { parent: this.client, visible: true });
     this.tanksPane = new TanksPane (this.vessel, slider, { parent: this.client, visible: false });
     this.fuelPane  = new FuelPane (this.vessel, slider, { parent: this.client, visible: false });
     this.infoPane  = null;
     
+    showOperPane ();
     /*var buttonStyle = { width: 70, height: 30, float: 'right' };
     var buttonBlock = new Cary.ui.ControlBlock ({ parent: this.client, visible: true, anchor: Cary.ui.anchor.BOTTOM });
     var userInfoCtl = new Cary.ui.ListBox ({ parent: this.client, comboBox: false, visible: true },
